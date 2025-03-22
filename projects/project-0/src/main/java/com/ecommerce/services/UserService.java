@@ -15,4 +15,10 @@ public class UserService {
         User newUser = new User(firstName, lastName, email, password);
         return userDAO.create(newUser);
     }
+
+    public User loginUser(String email, String password) {
+        User user = userDAO.getUserByEmail(email);
+        if (user.getPassword().equals(password)) return user;
+        return null;
+    }
 }
