@@ -1,3 +1,4 @@
+import com.ecommerce.models.Role;
 import com.ecommerce.models.User;
 import com.ecommerce.repos.UserDAOImpl;
 import com.ecommerce.services.UserService;
@@ -8,6 +9,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
 
@@ -27,7 +29,7 @@ public class UserServiceTest {
         String lastName = "Gonzalez";
         String email = "speedy@gonzalez.com";
         String password = "Password";
-        Mockito.when(mockUserDAOImpl.create(any(User.class)))
+        when(mockUserDAOImpl.create(any(User.class)))
                 .thenAnswer(invocation -> {
                     User user = invocation.getArgument(0);
                     return new User(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
@@ -47,7 +49,7 @@ public class UserServiceTest {
         String email = "speedy@gonzalez.com";
         String password = "Password";
         User mockedUser = new User("Speedy", "Gonzalez", email, password);
-        Mockito.when(mockUserDAOImpl.getUserByEmail(email)).thenReturn(mockedUser);
+        when(mockUserDAOImpl.getUserByEmail(email)).thenReturn(mockedUser);
 
         User returnedUser = userService.loginUser(email, password);
 
@@ -60,11 +62,21 @@ public class UserServiceTest {
         String password = "Password";
         String incorrectPassword = "NoRight";
         User mockedUser = new User("Speedy", "Gonzalez", email, password);
-        Mockito.when(mockUserDAOImpl.getUserByEmail(email)).thenReturn(mockedUser);
+        when(mockUserDAOImpl.getUserByEmail(email)).thenReturn(mockedUser);
 
         User returnedUser = userService.loginUser(email, incorrectPassword);
 
         assertNull(returnedUser);
+    }
+
+    @Test
+    public void updateUserDataShouldReturnNewData() {
+        User updatedUser = new User("Speedy", "Rat-Gonzalez", "speedy0@gonzalez.com", "Password1");
+        when(mockUserDAOImpl.update(any(User.class))).thenReturn(updatedUser);
+
+        User returnedUser = userService.updateUserInfo(updatedUser);
+
+        assertEquals(updatedUser, returnedUser);
     }
 
     //Purchases

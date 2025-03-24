@@ -21,4 +21,8 @@ public class UserService {
         if (user.getPassword().equals(password)) return user;
         return null;
     }
+
+    public User updateUserInfo(User user) {
+        return userDAO.update(user);
+    }
 }

@@ -18,6 +18,8 @@ public class JavalinUtil {
             config.router.apiBuilder(() -> {
                 path("users", () -> {
                     post("/signup", userController :: registerUserHandler);
+                    post("/login", userController :: loginHandler);
+                    put("", userController :: updateUserHandler);
                 });
             });
         })
