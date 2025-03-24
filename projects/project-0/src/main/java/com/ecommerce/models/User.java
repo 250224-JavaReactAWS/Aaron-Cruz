@@ -12,10 +12,10 @@ public class User implements Comparable<User>{
 
     private  String password;
 
+    private Role role;
+
     public User() {
     }
-
-    private Role role;
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;

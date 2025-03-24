@@ -69,7 +69,7 @@ A 5-10 minute presentation will be required to demonstrate your project. This wi
 - ~~**As a user, I want to create an account so that I can log in and place orders.**~~
 - ~~**As a user, I want to log in so that I can access my account and make purchases.**~~
 ~~- **As a user, I want to update my account details (name, email, password) so that my information stays current.**~~
-- **As a user, I want to view my order history so that I can track past purchases.**
+- ~~**As a user, I want to view my order history so that I can track past purchases.**~~
 
 ### **Product Management**
 - **As a user, I want to browse a list of available products so that I can find items to purchase.**
