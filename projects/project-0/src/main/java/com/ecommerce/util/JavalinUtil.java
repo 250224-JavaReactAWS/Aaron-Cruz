@@ -1,12 +1,11 @@
 package com.ecommerce.util;
 
 import com.ecommerce.controllers.OrderController;
+import com.ecommerce.controllers.ProductController;
 import com.ecommerce.controllers.UserController;
-import com.ecommerce.repos.OrderDAO;
-import com.ecommerce.repos.OrderDAOImpl;
-import com.ecommerce.repos.UserDAO;
-import com.ecommerce.repos.UserDAOImpl;
+import com.ecommerce.repos.*;
 import com.ecommerce.services.OrderService;
+import com.ecommerce.services.ProductService;
 import com.ecommerce.services.UserService;
 import io.javalin.Javalin;
 
@@ -22,6 +21,10 @@ public class JavalinUtil {
         OrderService orderService = new OrderService(orderDAO);
         OrderController orderController = new OrderController(orderService);
 
+        ProductDAO productDAO = new ProductDAOImpl();
+        ProductService productService = new ProductService(productDAO);
+        ProductController productController = new ProductController(productService);
+
         return Javalin.create(config -> {
             config.router.apiBuilder(() -> {
                 path("users", () -> {
@@ -32,6 +35,10 @@ public class JavalinUtil {
 
                 path("orders", () -> {
                     get("", orderController :: fetcherUserOrdersHandler);
+                });
+
+                path("products", () -> {
+                    get("", productController :: fetcherAvailableProductsHandler);
                 });
             });
         })
