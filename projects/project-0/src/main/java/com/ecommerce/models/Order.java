@@ -14,6 +14,9 @@ public class Order {
 
     private Date createdAt;
 
+    public Order() {
+    }
+
     public Order(int orderId, int userId, float totalPrice, Status status, Date createdAt) {
         this.orderId = orderId;
         this.userId = userId;

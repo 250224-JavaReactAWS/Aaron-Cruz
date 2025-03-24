@@ -39,6 +39,7 @@ public class JavalinUtil {
 
                 path("products", () -> {
                     get("", productController :: fetcherAvailableProductsHandler);
+                    post("", productController :: addNewProductHandler);
                 });
             });
         })
