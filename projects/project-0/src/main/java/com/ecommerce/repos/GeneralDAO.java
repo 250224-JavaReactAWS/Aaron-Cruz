@@ -6,4 +6,6 @@ public interface GeneralDAO <T>{
 
     T update(T obj);
 
+    boolean deleteById(int id);
+
 }

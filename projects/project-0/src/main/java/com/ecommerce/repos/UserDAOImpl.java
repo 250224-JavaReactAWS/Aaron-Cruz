@@ -10,7 +10,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User create(User obj) {
         String sql = "INSERT INTO public.\"User\" (first_name, last_name, email, password) " +
-                "VALUES (?, ?, ?, ?) RETURNING user_id";
+                "VALUES (?, ?, ?, ?) RETURNING *";
 
         try (Connection conn = ConnectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -25,7 +25,8 @@ public class UserDAOImpl implements UserDAO {
             if (affectedRows > 0) {
                 try (ResultSet rs = ps.getGeneratedKeys()) {
                     if (rs.next()) {
-                        obj.setUserId(rs.getInt(1));
+                        obj.setUserId(rs.getInt("user_id"));
+                        obj.setRole(Role.valueOf(rs.getString("role")));
                     }
                 }
             }
@@ -100,5 +101,10 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
     }
 }

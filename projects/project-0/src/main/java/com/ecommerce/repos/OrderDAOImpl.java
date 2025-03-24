@@ -88,4 +88,11 @@ public class OrderDAOImpl implements OrderDAO {
             return null;
         }
     }
+
+    @Override
+    public boolean deleteById(int id) {
+        String sql = "DELETE FROM \"Order\" WHERE order_id = ?";
+
+        return false;
+    }
 }
