@@ -40,6 +40,8 @@ public class JavalinUtil {
                 path("products", () -> {
                     get("", productController :: fetcherAvailableProductsHandler);
                     post("", productController :: addNewProductHandler);
+                    put("", productController :: refresherProductsHandler);
+                    delete("", productController :: eraserUnavailableProductsHandler);
                 });
             });
         })

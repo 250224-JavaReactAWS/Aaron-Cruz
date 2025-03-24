@@ -36,6 +36,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public boolean deleteUnavailableProducts() {
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "DELETE FROM \"Product\" WHERE stock < 1;";
+            Statement statement = conn.createStatement();
+            statement.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Product create(Product obj) {
         String sql = "INSERT INTO \"Product\" (name, description, price, stock) VALUES " +
                 "(?, ?, ?, ?) RETURNING *";

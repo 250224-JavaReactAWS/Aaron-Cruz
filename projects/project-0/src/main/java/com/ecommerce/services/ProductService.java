@@ -20,4 +20,12 @@ public class ProductService {
     public Product addProduct(Product product) {
         return productDAO.create(product);
     }
+
+    public Product updateProduct(Product product) {
+        return productDAO.update(product);
+    }
+
+    public boolean eraseUnavailableProducts() {
+        return  productDAO.deleteUnavailableProducts();
+    }
 }

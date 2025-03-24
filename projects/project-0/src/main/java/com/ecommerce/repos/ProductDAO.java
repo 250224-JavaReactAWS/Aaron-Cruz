@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProductDAO extends GeneralDAO<Product>{
     List<Product> getAvailableProducts();
+
+    boolean deleteUnavailableProducts();
 }

@@ -74,9 +74,9 @@ A 5-10 minute presentation will be required to demonstrate your project. This wi
 ### **Product Management**
 - ~~**As a user, I want to browse a list of available products so that I can find items to purchase.**~~
 - ~~**As a user, I want to view details of a specific product so that I can decide whether to buy it.**~~
-- **As an admin, I want to add new products to the catalog so that users can purchase them.**
-- **As an admin, I want to update product details (name, price, stock) so that the catalog remains accurate.**
-- **As an admin, I want to delete products that are no longer available so that users do not see outdated listings.**
+- ~~**As an admin, I want to add new products to the catalog so that users can purchase them.**~~
+- ~~**As an admin, I want to update product details (name, price, stock) so that the catalog remains accurate.**~~
+- ~~**As an admin, I want to delete products that are no longer available so that users do not see outdated listings.**~~
 
 ### **Cart & Checkout**
 - **As a user, I want to add products to my cart so that I can purchase multiple items at once.**

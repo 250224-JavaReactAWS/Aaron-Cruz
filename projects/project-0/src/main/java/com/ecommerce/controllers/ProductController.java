@@ -51,4 +51,38 @@ public class ProductController {
         ctx.status(200);
         ctx.json(returnedProduct);
     }
+
+    public void refresherProductsHandler(Context ctx) {
+        if (ctx.sessionAttribute("user_id") == null) {
+            ctx.status(401);
+            ctx.json(new ErrorMessage("You must be logged to view available products"));
+            return;
+        }
+        if (!ctx.sessionAttribute("role").equals(Role.ADMIN)) {
+            ctx.status(401);
+            ctx.json(new ErrorMessage("You must be an Admin to create available products"));
+            return;
+        }
+        Product requestProduct = ctx.bodyAsClass(Product.class);
+        Product returnedProduct = productService.updateProduct(requestProduct);
+        ctx.status(200);
+        ctx.json(returnedProduct);
+    }
+
+    public void eraserUnavailableProductsHandler(Context ctx) {
+        if (ctx.sessionAttribute("user_id") == null) {
+            ctx.status(401);
+            ctx.json(new ErrorMessage("You must be logged to view available products"));
+            return;
+        }
+        if (!ctx.sessionAttribute("role").equals(Role.ADMIN)) {
+            ctx.status(401);
+            ctx.json(new ErrorMessage("You must be an Admin to create available products"));
+            return;
+        }
+
+        ctx.status(200);
+        ctx.json(productService.eraseUnavailableProducts());
+
+    }
 }
